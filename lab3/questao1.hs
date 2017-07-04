@@ -1,7 +1,10 @@
 main = do
-  input <- getLine
-  let result = function(read input)
-  print result
+    input1 <- getLine
+    input2 <- getLine
+    let result = enesimoElemento (read input1) (read input2)
+    print result
 
-function :: Bool -> Bool
-function x = x
+enesimoElemento :: [Int] -> Int -> Int
+enesimoElemento l x = l !! (x-1)
+ 
+ 
