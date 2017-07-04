@@ -1,17 +1,23 @@
+ 
+quantity :: String -> [String] -> Int
+quantity str [] = 0
+quantity str (cabeca:corpo) =
+    if cabeca == str then 
+        1 + quantity str corpo
+    else 
+        0 + quantity str corpo
+ 
+removeElem :: String -> [String] -> [String]
+removeElem str [] = []
+removeElem str lista = [p | p <- lista, p /= str]
+ 
+retornaTupl :: [String] -> [(String, Int)]
+retornaTupl [] = []
+retornaTupl (cabeca:corpo) = do
+    let quant = (quantity cabeca corpo) + 1
+    let lista = removeElem cabeca corpo
+    [(cabeca, quant)] ++ retornaTupl lista
+ 
 main = do
   input <- getLine
-  let result = palavraRepetida(read input)
-  print result
-
-function :: [String] -> [(String, Int)]
-function [] = []
-function (a:as) = | contemNaLista (as) a = function as ((a:as), ++)
-				  | 
-
-
-contemNaLista :: [String] -> String -> Bool
-contemNaLista [] n = False
-contemNaLista (a:as) n  | a == n = True
-						| otherwise = contemNaLista as n 
-
-
+  print (retornaTupl (read input))
